@@ -23,7 +23,7 @@ request.setCharacterEncoding("UTF-8");
 
 <body>
 <h2>가입완료</h2>	
-<jsp:include page="dataAll.jsp">
+<jsp:include page="login.jsp">
 <jsp:param value="<%=info.getId() %>" name="id"/>
 </jsp:include>
 </body>

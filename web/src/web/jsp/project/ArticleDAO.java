@@ -68,5 +68,30 @@ public class ArticleDAO {
 			if(conn!=null) {try{conn.close();}catch(SQLException s){s.printStackTrace();}}
 		}
 	}
-
+	public ArticleDTO getArticle(String id) {
+		ArticleDTO dto = new ArticleDTO();
+		try {
+			conn = getConnection();
+			String sql = "select * from article where id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, Integer.parseInt(id));
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				dto.setId(id);
+				dto.setAdate(rs.getTimestamp("adate"));
+				dto.setBody(rs.getString("abody"));
+				dto.setTitle(rs.getString("title"));
+				dto.setUserid(rs.getString("userid"));
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		finally {
+			if(rs!=null) {try{rs.close();}catch(SQLException s){s.printStackTrace();}}
+			if(pstmt!=null) {try{pstmt.close();}catch(SQLException s){s.printStackTrace();}}
+			if(conn!=null) {try{conn.close();}catch(SQLException s){s.printStackTrace();}}
+		}
+		return dto;
+	}
 }

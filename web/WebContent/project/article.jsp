@@ -16,11 +16,8 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <%
-
 	ArticleDAO dao = new ArticleDAO();
 	List list = dao.selectAll();
-
-
 %>
 <body>
 	<div class="container">
@@ -31,20 +28,29 @@
 				<td>제목</td>
 				<td>작성자</td>
 				<td>작성일</td>
-			</tr>			
-			<%
-			for(int i=0;i<list.size();i++){
-				ArticleDTO dto=(ArticleDTO)list.get(i);	%>
-			<tr>
-					<td><%=dto.getId() %></td>
-					<td><%=dto.getTitle() %></td>
-					<td><%=dto.getUserid() %></td>
-					<td><%=dto.getAdate() %></td>
 			</tr>
-			<%}%>	
-			
+			<%
+				for (int i = 0; i < list.size(); i++) {
+					ArticleDTO dto = (ArticleDTO) list.get(i);
+			%>
+			<tr data-url="articleinfo.jsp?id=<%=dto.getId()%>">
+				<td><%=dto.getId()%></td>
+				<td><%=dto.getTitle()%></td>
+				<td><%=dto.getUserid()%></td>
+				<td><%=dto.getAdate()%></td>
+			</tr>
+			<%
+				}
+			%>
+
 		</table>
-		<button onclick ="window.location.href='createArticle.jsp'">작성하기</button>
+		<button onclick="window.location.href='createArticle.jsp'">작성하기</button>
 	</div>
+	<script>
+		$("[data-url]").click(function() {
+			var url = $(this).attr("data-url");
+			location.href = url;
+		})
+	</script>
 </body>
 </html>

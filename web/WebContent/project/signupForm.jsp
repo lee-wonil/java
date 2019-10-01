@@ -13,6 +13,7 @@ function chackpw(){
     if(pw!= pw2) return false;
     return true;
 }
+
 function check(){
     var user = eval("document.registForm"); 
     if(!user.id.value){

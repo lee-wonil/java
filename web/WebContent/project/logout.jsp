@@ -19,6 +19,9 @@
 			response.addCookie(c);
 		}		
 	}
+	session.removeAttribute("sid");
+	session.removeAttribute("spw");
+	session.invalidate();
 	response.sendRedirect("main.jsp");
 
 

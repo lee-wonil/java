@@ -16,6 +16,8 @@
 		if(dao.login(id, pw)){
 			Cookie coid = new Cookie("cookieId",id);
 			Cookie copw = new Cookie("cookiePw",pw);
+			session.setAttribute("sId", id);
+			session.setAttribute("spw", pw);
 			coid.setMaxAge(60*60*24);
 			copw.setMaxAge(60*60*24);
 			response.addCookie(coid);
